@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@techcorp-platform/ui-shared": ["libs/ui-shared/src/index.ts"],
+      "@techcorp-platform/enterprise-features": ["libs/enterprise-features/src/index.ts"],
+      "@techcorp-platform/analytics-features": ["libs/analytics-features/src/index.ts"],
+      "@techcorp-platform/deployment-plugin": ["tools/deployment-plugin/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
