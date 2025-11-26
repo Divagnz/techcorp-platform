@@ -4,6 +4,6 @@
   "projectType": "application",
   "sourceRoot": "apps/enterprise-dashboard-e2e/src",
   "implicitDependencies": ["enterprise-dashboard"],
-  "// targets": "to see all targets run: nx show project enterprise-dashboard-e2e --web",
+  "version": "0.0.0",
   "targets": {}
 }
