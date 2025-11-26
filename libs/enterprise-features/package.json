@@ -1,0 +1,13 @@
+{
+  "name": "@techcorp-platform/enterprise-features",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0",
+    "@techcorp-platform/ui-shared": "^0.0.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
