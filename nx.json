@@ -41,6 +41,41 @@
           "codeCoverage": true
         }
       }
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "nx-project-release:version": {
+      "cache": false,
+      "options": {
+        "versionFiles": ["project.json"],
+        "gitCommit": true,
+        "gitTag": true,
+        "ciOnly": true,
+        "gitCommitMessage": "chore(release): {projectName} version {version}",
+        "trackDeps": true,
+        "syncVersions": false,
+        "currentVersionResolver": "disk"
+      }
+    },
+    "nx-project-release:changelog": {
+      "cache": false,
+      "options": {
+        "preset": "conventionalcommits",
+        "projectChangelogs": true
+      }
+    },
+    "nx-project-release:publish": {
+      "cache": false,
+      "dependsOn": ["build"],
+      "options": {
+        "registryType": "nexus",
+        "registry": "https://registry.npmjs.org",
+        "access": "restricted",
+        "distTag": "version"
+      }
     }
   },
   "plugins": [
@@ -63,6 +98,36 @@
       "linter": "eslint",
       "style": "scss",
       "unitTestRunner": "jest"
+    },
+    "@nx/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
     }
+  },
+  "projectRelease": {
+    "releaseGroups": {
+      "apps": {
+        "registryType": "nexus",
+        "versionStrategy": "disk",
+        "versionFiles": ["project.json"],
+        "pathStrategy": "version",
+        "projects": [
+          "analytics-platform",
+          "customer-portal",
+          "enterprise-dashboard"
+        ]
+      },
+      "libs": {
+        "registryType": "npm",
+        "versionStrategy": "disk",
+        "versionFiles": ["package.json"],
+        "projects": ["analytics-features", "enterprise-features", "ui-shared"]
+      }
+    },
+    "tagNaming": {
+      "prefix": "v",
+      "format": "{projectName}-v{version}"
+    },
+    "excludedProjects": ["customer-portal-e2e", "enterprise-dashboard-e2e"]
   }
 }

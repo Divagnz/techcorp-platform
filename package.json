@@ -2,7 +2,9 @@
   "name": "@techcorp-platform/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prepare": "simple-git-hooks"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~20.3.0",
@@ -22,6 +24,9 @@
     "@angular/cli": "~20.3.0",
     "@angular/compiler-cli": "~20.3.0",
     "@angular/language-service": "~20.3.0",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@commitlint/config-nx-scopes": "^20.0.0",
     "@eslint/js": "^9.8.0",
     "@nx/angular": "22.1.1",
     "@nx/devkit": "22.1.1",
@@ -30,15 +35,17 @@
     "@nx/jest": "22.1.1",
     "@nx/js": "22.1.1",
     "@nx/playwright": "22.1.1",
+    "@nx/plugin": "^22.1.1",
     "@nx/web": "22.1.1",
     "@nx/workspace": "22.1.1",
     "@playwright/test": "^1.36.0",
     "@schematics/angular": "~20.3.0",
     "@swc-node/register": "~1.9.1",
+    "@swc/cli": "~0.6.0",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
     "@types/jest": "^29.5.12",
-    "@types/node": "18.16.9",
+    "@types/node": "20.19.9",
     "@typescript-eslint/utils": "^8.40.0",
     "angular-eslint": "^20.3.0",
     "eslint": "^9.8.0",
@@ -46,14 +53,28 @@
     "eslint-plugin-playwright": "^1.6.2",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "jest-environment-node": "^29.7.0",
     "jest-preset-angular": "~14.6.1",
     "jest-util": "^29.7.0",
+    "jsonc-eslint-parser": "^2.1.0",
+    "ng-packagr": "~20.3.0",
     "nx": "22.1.1",
+    "nx-project-release": "^0.0.19",
     "prettier": "^2.6.2",
+    "project-release": "^0.6.13",
+    "simple-git-hooks": "^2.11.1",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.40.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "node .nx-project-release/hooks/pre-commit.js",
+    "pre-push": "node .nx-project-release/hooks/pre-push.js",
+    "commit-msg": "npx commitlint --edit \"$1\""
+  },
+  "repo": {
+    "directory": "."
   }
 }
