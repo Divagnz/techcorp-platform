@@ -1,7 +1,10 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -17,8 +20,13 @@
   "targetDefaults": {
     "@angular/build:application": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     },
     "@nx/eslint:lint": {
       "cache": true,
@@ -31,7 +39,11 @@
     },
     "@nx/jest:jest": {
       "cache": true,
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js"
+      ],
       "options": {
         "passWithNoTests": true
       },
@@ -44,13 +56,20 @@
     },
     "@nx/js:tsc": {
       "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     },
     "nx-project-release:version": {
       "cache": false,
       "options": {
-        "versionFiles": ["package.json"],
+        "versionFiles": [
+          "package.json"
+        ],
         "gitCommit": true,
         "gitTag": true,
         "ciOnly": true,
@@ -68,9 +87,29 @@
         "projectChangelogs": true
       }
     },
+    "nx-project-release:artifact": {
+      "cache": false,
+      "dependsOn": [
+        "build"
+      ],
+      "options": {
+        "sourceDir": "dist/{projectRoot}",
+        "outputDir": "dist/artifacts",
+        "format": "tgz"
+      }
+    },
+    "nx-project-release:release": {
+      "cache": false,
+      "options": {
+        "gitPush": false,
+        "createGitHubRelease": false
+      }
+    },
     "nx-project-release:publish": {
       "cache": false,
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "options": {
         "registryType": "npm",
         "registry": "https://registry.npmjs.org",
@@ -104,5 +143,34 @@
       "linter": "eslint",
       "unitTestRunner": "jest"
     }
+  },
+  "projectRelease": {
+    "projectsRelationship": "independent",
+    "versionFiles": [
+      "package.json"
+    ],
+    "changelogPreset": "angular",
+    "releaseGroups": {
+      "apps": {
+        "registryType": "nexus",
+        "versionStrategy": "independent",
+        "versionFiles": [
+          "package.json"
+        ],
+        "projects": []
+      },
+      "libs": {
+        "registryType": "npm",
+        "versionStrategy": "independent",
+        "versionFiles": [
+          "package.json"
+        ],
+        "projects": []
+      }
+    },
+    "excludedProjects": [
+      "customer-portal-e2e",
+      "enterprise-dashboard-e2e"
+    ]
   }
 }

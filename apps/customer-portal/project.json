@@ -9,11 +9,15 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/customer-portal",
         "browser": "apps/customer-portal/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/customer-portal/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -22,7 +26,9 @@
             "input": "apps/customer-portal/public"
           }
         ],
-        "styles": ["apps/customer-portal/src/styles.scss"]
+        "styles": [
+          "apps/customer-portal/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -72,7 +78,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/customer-portal/jest.config.ts",
         "tsConfig": "apps/customer-portal/tsconfig.spec.json"
@@ -90,14 +98,26 @@
     },
     "version": {
       "executor": "nx-project-release:version",
-      "options": {}
+      "options": {
+        "versionFiles": [
+          "project.json"
+        ],
+        "tagNaming": {
+          "format": "{projectName}@{version}",
+          "prefix": "v",
+          "includeProjectName": true
+        },
+        "bumpDependents": true
+      }
     },
     "changelog": {
       "executor": "nx-project-release:changelog"
     },
     "publish": {
       "executor": "nx-project-release:publish",
-      "dependsOn": ["build"]
+      "dependsOn": [
+        "build"
+      ]
     }
   }
 }

@@ -4,18 +4,23 @@
   "projectType": "application",
   "sourceRoot": "apps/customer-portal-e2e/src",
   "version": "0.0.0",
-  "implicitDependencies": ["customer-portal"],
+  "implicitDependencies": [
+    "customer-portal"
+  ],
   "targets": {
     "version": {
       "executor": "nx-project-release:version",
-      "options": {}
-    },
-    "changelog": {
-      "executor": "nx-project-release:changelog"
-    },
-    "publish": {
-      "executor": "nx-project-release:publish",
-      "dependsOn": ["build"]
+      "options": {
+        "versionFiles": [
+          "project.json"
+        ],
+        "tagNaming": {
+          "format": "{projectName}@{version}",
+          "prefix": "v",
+          "includeProjectName": true
+        },
+        "bumpDependents": true
+      }
     }
   }
 }

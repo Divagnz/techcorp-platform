@@ -4,18 +4,9 @@
   "projectType": "application",
   "sourceRoot": "apps/enterprise-dashboard-e2e/src",
   "version": "0.0.0",
-  "implicitDependencies": ["enterprise-dashboard"],
-  "targets": {
-    "version": {
-      "executor": "nx-project-release:version",
-      "options": {}
-    },
-    "changelog": {
-      "executor": "nx-project-release:changelog"
-    },
-    "publish": {
-      "executor": "nx-project-release:publish",
-      "dependsOn": ["build"]
-    }
-  }
+  "implicitDependencies": [
+    "enterprise-dashboard"
+  ],
+  "// targets": "to see all targets run: nx show project enterprise-dashboard-e2e --web",
+  "targets": {}
 }
