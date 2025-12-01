@@ -59,7 +59,7 @@
     "jsonc-eslint-parser": "^2.1.0",
     "ng-packagr": "~20.3.0",
     "nx": "22.1.1",
-    "nx-project-release": "^0.0.20",
+    "nx-project-release": "^0.0.23",
     "prettier": "^2.6.2",
     "project-release": "^0.6.13",
     "simple-git-hooks": "^2.11.1",
@@ -70,8 +70,6 @@
     "typescript-eslint": "^8.40.0"
   },
   "simple-git-hooks": {
-    "pre-commit": "node .nx-project-release/hooks/pre-commit.js",
-    "pre-push": "node .nx-project-release/hooks/pre-push.js",
     "commit-msg": "npx commitlint --edit \"$1\""
   },
   "repo": {

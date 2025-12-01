@@ -50,20 +50,21 @@
     "nx-project-release:version": {
       "cache": false,
       "options": {
-        "versionFiles": ["project.json"],
+        "versionFiles": ["package.json"],
         "gitCommit": true,
         "gitTag": true,
         "ciOnly": true,
         "gitCommitMessage": "chore(release): {projectName} version {version}",
-        "trackDeps": true,
+        "trackDeps": false,
         "syncVersions": false,
-        "currentVersionResolver": "disk"
+        "currentVersionResolver": "git-tag",
+        "fallbackCurrentVersionResolver": "disk"
       }
     },
     "nx-project-release:changelog": {
       "cache": false,
       "options": {
-        "preset": "conventionalcommits",
+        "preset": "angular",
         "projectChangelogs": true
       }
     },
@@ -71,10 +72,10 @@
       "cache": false,
       "dependsOn": ["build"],
       "options": {
-        "registryType": "nexus",
+        "registryType": "npm",
         "registry": "https://registry.npmjs.org",
-        "access": "restricted",
-        "distTag": "version"
+        "access": "public",
+        "distTag": "latest"
       }
     }
   },
@@ -103,31 +104,5 @@
       "linter": "eslint",
       "unitTestRunner": "jest"
     }
-  },
-  "projectRelease": {
-    "releaseGroups": {
-      "apps": {
-        "registryType": "nexus",
-        "versionStrategy": "disk",
-        "versionFiles": ["project.json"],
-        "pathStrategy": "version",
-        "projects": [
-          "analytics-platform",
-          "customer-portal",
-          "enterprise-dashboard"
-        ]
-      },
-      "libs": {
-        "registryType": "npm",
-        "versionStrategy": "disk",
-        "versionFiles": ["package.json"],
-        "projects": ["analytics-features", "enterprise-features", "ui-shared"]
-      }
-    },
-    "tagNaming": {
-      "prefix": "v",
-      "format": "{projectName}-v{version}"
-    },
-    "excludedProjects": ["customer-portal-e2e", "enterprise-dashboard-e2e"]
   }
 }

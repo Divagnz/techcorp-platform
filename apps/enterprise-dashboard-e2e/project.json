@@ -3,7 +3,19 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/enterprise-dashboard-e2e/src",
-  "implicitDependencies": ["enterprise-dashboard"],
   "version": "0.0.0",
-  "targets": {}
+  "implicitDependencies": ["enterprise-dashboard"],
+  "targets": {
+    "version": {
+      "executor": "nx-project-release:version",
+      "options": {}
+    },
+    "changelog": {
+      "executor": "nx-project-release:changelog"
+    },
+    "publish": {
+      "executor": "nx-project-release:publish",
+      "dependsOn": ["build"]
+    }
+  }
 }

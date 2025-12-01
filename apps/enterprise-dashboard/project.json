@@ -90,9 +90,7 @@
     },
     "version": {
       "executor": "nx-project-release:version",
-      "options": {
-        "releaseGroup": "apps"
-      }
+      "options": {}
     },
     "changelog": {
       "executor": "nx-project-release:changelog"
