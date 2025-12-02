@@ -50,7 +50,7 @@
     "jsonc-eslint-parser": "^2.1.0",
     "ng-packagr": "~20.3.0",
     "nx": "22.1.1",
-    "nx-project-release": "^0.0.27",
+    "nx-project-release": "^0.0.28",
     "prettier": "^2.6.2",
     "project-release": "^0.6.13",
     "simple-git-hooks": "^2.11.1",
