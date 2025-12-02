@@ -49,12 +49,14 @@ jobs:
           npx nx affected -t changelog \
             --base=origin/main~1
 
-      - name: Commit version bumps and changelogs
+      - name: Commit and push version bumps and changelogs
+        if: ${{ github.event.inputs.dryRun != 'true' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git diff --staged --quiet || git commit -m "chore(release): version bumps and changelogs"
+          git push
 
       - name: Build affected projects
         run: |
@@ -66,33 +68,34 @@ jobs:
           npx nx affected -t artifact \
             --base=origin/main~1
 
-      - name: Create tags for affected projects
+      - name: Commit artifacts to git
+        if: ${{ github.event.inputs.dryRun != 'true' }}
+        run: |
+          git add dist/artifacts/
+          git diff --staged --quiet || git commit -m "chore(release): add release artifacts"
+
+      - name: Create tags and GitHub releases
+        if: ${{ github.event.inputs.dryRun != 'true' }}
         run: |
           npx nx affected -t release \
             --base=origin/main~1 \
-            ${{ github.event.inputs.dryRun == 'true' && '--dryRun' || '' }}
-
-      - name: Publish affected projects
-        run: |
-          npx nx affected -t publish \
-            --base=origin/main~1 \
-            ${{ github.event.inputs.dryRun == 'true' && '--dryRun' || '' }}
+            --gitTag=true \
+            --gitPush=false \
+            --createGitHubRelease
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push commit and tags
+      - name: Push commits and tags
         if: ${{ github.event.inputs.dryRun != 'true' }}
         run: |
           git push
           git push --tags
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create GitHub releases
+      - name: Publish to npm
         if: ${{ github.event.inputs.dryRun != 'true' }}
         run: |
-          npx nx affected -t release \
-            --base=origin/main~1 \
-            --createGitHubRelease --gitPush=false
+          npx nx affected -t publish \
+            --base=origin/main~1
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
