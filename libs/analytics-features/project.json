@@ -63,17 +63,6 @@
       },
       "dependsOn": ["build", "artifact"]
     },
-    "artifact": {
-      "executor": "nx-project-release:artifact",
-      "dependsOn": ["build"],
-      "options": {
-        "sourceDir": "{workspaceRoot}/dist/libs/analytics-features",
-        "outputDir": "dist/artifacts",
-        "format": "tgz",
-        "artifactName": "{projectName}-{version}.tgz"
-      },
-      "outputs": ["{workspaceRoot}/dist/artifacts"]
-    },
     "release": {
       "executor": "nx-project-release:release",
       "options": {
