@@ -67,7 +67,7 @@
         "build"
       ],
       "options": {
-        "sourceDir": "dist/libs/ui-shared",
+        "sourceDir": "{workspaceRoot}/dist/libs/ui-shared",
         "outputDir": "dist/artifacts",
         "format": "tgz",
         "artifactName": "{projectName}-{version}.tgz"

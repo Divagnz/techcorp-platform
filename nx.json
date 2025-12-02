@@ -93,8 +93,8 @@
         "build"
       ],
       "options": {
-        "sourceDir": "dist/{projectRoot}",
-        "outputDir": "dist/artifacts",
+        "sourceDir": "dist/{projectRoot}/",
+        "outputDir": "dist/artifacts/",
         "format": "tgz"
       }
     },

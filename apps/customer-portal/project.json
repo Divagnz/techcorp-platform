@@ -2,7 +2,11 @@
   "name": "customer-portal",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
+<<<<<<< Updated upstream
   "version": "0.0.2",
+=======
+  "version": "0.3.0",
+>>>>>>> Stashed changes
   "prefix": "app",
   "sourceRoot": "apps/customer-portal/src",
   "tags": [],
@@ -108,6 +112,16 @@
           "includeProjectName": true
         },
         "bumpDependents": true
+      }
+    },
+    "artifact": {
+      "executor": "nx-project-release:artifact",
+      "cache": false,
+      "dependsOn": ["build"],
+      "options": {
+        "sourceDir": "{workspaceRoot}/dist/apps/customer-portal",
+        "outputDir": "{workspaceRoot}/dist/artifacts/",
+        "format": "tgz"
       }
     },
     "changelog": {

@@ -70,7 +70,7 @@
         "build"
       ],
       "options": {
-        "sourceDir": "dist/libs/enterprise-features",
+        "sourceDir": "{workspaceRoot}/dist/libs/enterprise-features",
         "outputDir": "dist/artifacts",
         "format": "tgz",
         "artifactName": "{projectName}-{version}.tgz"
