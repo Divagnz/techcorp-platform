@@ -8,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class App {
   protected title = 'enterprise-dashboard';
+  protected version = '0.1.0';
+  protected modules = ['analytics', 'reporting', 'admin'];
+
+  getDashboardConfig() {
+    return {
+      title: this.title,
+      version: this.version,
+      modules: this.modules,
+      isEnterprise: true,
+      timestamp: new Date().toISOString()
+    };
+  }
 }
