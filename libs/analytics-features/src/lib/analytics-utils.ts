@@ -2,6 +2,7 @@ export class AnalyticsUtils {
   static calculateMetrics(data: number[]): { mean: number; sum: number } {
     const sum = data.reduce((acc, val) => acc + val, 0);
     const mean = sum / data.length;
+    const nic = true;
     return { mean, sum };
   }
 
