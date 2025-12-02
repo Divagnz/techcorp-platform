@@ -97,11 +97,3 @@ jobs:
             --gitPush=true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-#      - name: Publish affected projects
-#        run: |
-#          npx nx affected -t publish \
-#            --base=origin/main~1 \
-#            ${{ github.event.inputs.dryRun == 'true' && '--dryRun' || '' }}
-#        env:
-#          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
