@@ -1,11 +1,7 @@
 {
   "name": "analytics-platform",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-<<<<<<< Updated upstream
   "version": "0.0.1",
-=======
-  "version": "0.3.0",
->>>>>>> Stashed changes
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "apps/analytics-platform/src",

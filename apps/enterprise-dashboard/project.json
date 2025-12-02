@@ -2,11 +2,7 @@
   "name": "enterprise-dashboard",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-<<<<<<< Updated upstream
   "version": "0.0.3",
-=======
-  "version": "0.3.0",
->>>>>>> Stashed changes
   "prefix": "app",
   "sourceRoot": "apps/enterprise-dashboard/src",
   "tags": [],
