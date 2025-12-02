@@ -9,11 +9,15 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/analytics-platform",
         "browser": "apps/analytics-platform/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/analytics-platform/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -22,7 +26,9 @@
             "input": "apps/analytics-platform/public"
           }
         ],
-        "styles": ["apps/analytics-platform/src/styles.scss"]
+        "styles": [
+          "apps/analytics-platform/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -72,7 +78,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/analytics-platform/jest.config.ts",
         "tsConfig": "apps/analytics-platform/tsconfig.spec.json"
@@ -91,7 +99,15 @@
     "version": {
       "executor": "nx-project-release:version",
       "options": {
-        "releaseGroup": "apps"
+        "versionFiles": [
+          "project.json"
+        ],
+        "tagNaming": {
+          "format": "{projectName}@{version}",
+          "prefix": "v",
+          "includeProjectName": true
+        },
+        "bumpDependents": true
       }
     },
     "changelog": {
@@ -99,7 +115,9 @@
     },
     "publish": {
       "executor": "nx-project-release:publish",
-      "dependsOn": ["build"]
+      "dependsOn": [
+        "build"
+      ]
     }
   }
 }

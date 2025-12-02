@@ -8,7 +8,9 @@
   "targets": {
     "build": {
       "executor": "@angular/build:ng-packagr",
-      "outputs": ["{workspaceRoot}/dist/libs/enterprise-features"],
+      "outputs": [
+        "{workspaceRoot}/dist/libs/enterprise-features"
+      ],
       "options": {
         "project": "libs/enterprise-features/ng-package.json"
       },
@@ -21,11 +23,15 @@
         }
       },
       "defaultConfiguration": "production",
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build"
+      ]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "libs/enterprise-features/jest.config.ts",
         "tsConfig": "libs/enterprise-features/tsconfig.spec.json"
@@ -37,7 +43,9 @@
     "version": {
       "executor": "nx-project-release:version",
       "options": {
-        "releaseGroup": "libs"
+        "versionFiles": [
+          "package.json"
+        ]
       }
     },
     "changelog": {
@@ -45,7 +53,38 @@
     },
     "publish": {
       "executor": "nx-project-release:publish",
-      "dependsOn": ["build"]
+      "options": {
+        "registryType": "npm",
+        "registry": "}",
+        "access": "public",
+        "distTag": "latest"
+      },
+      "dependsOn": [
+        "build",
+        "artifact"
+      ]
+    },
+    "artifact": {
+      "executor": "nx-project-release:artifact",
+      "dependsOn": [
+        "build"
+      ],
+      "options": {
+        "sourceDir": "dist/libs/enterprise-features",
+        "outputDir": "dist/artifacts",
+        "format": "tgz",
+        "artifactName": "{projectName}-{version}.tgz"
+      },
+      "outputs": [
+        "{workspaceRoot}/dist/artifacts"
+      ]
+    },
+    "release": {
+      "executor": "nx-project-release:release",
+      "options": {
+        "gitPush": false,
+        "createGitHubRelease": false
+      }
     }
   }
 }

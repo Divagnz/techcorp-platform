@@ -3,7 +3,24 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/customer-portal-e2e/src",
-  "implicitDependencies": ["customer-portal"],
   "version": "0.0.0",
-  "targets": {}
+  "implicitDependencies": [
+    "customer-portal"
+  ],
+  "targets": {
+    "version": {
+      "executor": "nx-project-release:version",
+      "options": {
+        "versionFiles": [
+          "project.json"
+        ],
+        "tagNaming": {
+          "format": "{projectName}@{version}",
+          "prefix": "v",
+          "includeProjectName": true
+        },
+        "bumpDependents": true
+      }
+    }
+  }
 }

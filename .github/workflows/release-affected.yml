@@ -1,0 +1,98 @@
+name: Release Affected Projects
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+    inputs:
+      releaseAs:
+        description: 'Release type'
+        required: false
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      dryRun:
+        description: 'Dry run'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: Version affected projects
+        run: |
+          npx nx affected -t version \
+            --base=origin/main~1 \
+            --releaseAs=${{ github.event.inputs.releaseAs || 'patch' }} \
+            ${{ github.event.inputs.dryRun == 'true' && '--dryRun' || '' }}
+
+      - name: Generate changelogs for affected projects
+        run: |
+          npx nx affected -t changelog \
+            --base=origin/main~1
+
+      - name: Commit version bumps and changelogs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --staged --quiet || git commit -m "chore(release): version bumps and changelogs"
+
+      - name: Build affected projects
+        run: |
+          npx nx affected -t build \
+            --base=origin/main~1
+
+      - name: Create artifacts for affected projects
+        run: |
+          npx nx affected -t artifact \
+            --base=origin/main~1
+
+      - name: Create tags for affected projects
+        run: |
+          npx nx affected -t release \
+            --base=origin/main~1 \
+            ${{ github.event.inputs.dryRun == 'true' && '--dryRun' || '' }}
+
+      - name: Publish affected projects
+        run: |
+          npx nx affected -t publish \
+            --base=origin/main~1 \
+            ${{ github.event.inputs.dryRun == 'true' && '--dryRun' || '' }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Push commit and tags
+        if: ${{ github.event.inputs.dryRun != 'true' }}
+        run: |
+          git push
+          git push --tags
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub releases
+        if: ${{ github.event.inputs.dryRun != 'true' }}
+        run: |
+          npx nx affected -t release \
+            --base=origin/main~1 \
+            --createGitHubRelease --gitPush=false
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
