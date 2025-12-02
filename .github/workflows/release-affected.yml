@@ -66,21 +66,21 @@ jobs:
           npx nx affected -t artifact \
             --base=origin/main~1
 
+      - name: Commit artifacts to git
+        if: ${{ github.event.inputs.dryRun != 'true' }}
+        run: |
+          git add dist/artifacts/
+          git diff --staged --quiet || git commit -m "chore(release): add release artifacts"
+
       - name: Create tags for affected projects
         run: |
           npx nx affected -t release \
             --base=origin/main~1 \
+            --gitTag=true \
+            --gitPush=false \
             ${{ github.event.inputs.dryRun == 'true' && '--dryRun' || '' }}
 
-      - name: Publish affected projects
-        run: |
-          npx nx affected -t publish \
-            --base=origin/main~1 \
-            ${{ github.event.inputs.dryRun == 'true' && '--dryRun' || '' }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Push commit and tags
+      - name: Push commits and tags
         if: ${{ github.event.inputs.dryRun != 'true' }}
         run: |
           git push
@@ -88,11 +88,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create GitHub releases
+      - name: Create GitHub releases with artifacts
         if: ${{ github.event.inputs.dryRun != 'true' }}
         run: |
           npx nx affected -t release \
             --base=origin/main~1 \
-            --createGitHubRelease --gitPush=false
+            --createGitHubRelease \
+            --gitPush=true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
