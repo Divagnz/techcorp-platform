@@ -1,7 +1,7 @@
 {
   "name": "analytics-platform",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "apps/analytics-platform/src",
@@ -9,11 +9,15 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/analytics-platform",
         "browser": "apps/analytics-platform/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/analytics-platform/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -22,7 +26,9 @@
             "input": "apps/analytics-platform/public"
           }
         ],
-        "styles": ["apps/analytics-platform/src/styles.scss"]
+        "styles": [
+          "apps/analytics-platform/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -51,7 +57,9 @@
     "artifact": {
       "executor": "nx-project-release:artifact",
       "cache": false,
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "options": {
         "sourceDir": "{workspaceRoot}/dist/apps/analytics-platform",
         "outputDir": "{workspaceRoot}/dist/artifacts/",
@@ -81,7 +89,9 @@
       "executor": "@nx/eslint:lint"
     },
     "test": {
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/analytics-platform/jest.config.ts",
         "tsConfig": "apps/analytics-platform/tsconfig.spec.json"
@@ -100,7 +110,9 @@
     "version": {
       "executor": "nx-project-release:version",
       "options": {
-        "versionFiles": ["project.json"],
+        "versionFiles": [
+          "project.json"
+        ],
         "tagNaming": {
           "format": "v{version}",
           "prefix": "v",
@@ -114,7 +126,9 @@
     },
     "publish": {
       "executor": "nx-project-release:publish",
-      "dependsOn": ["build"]
+      "dependsOn": [
+        "build"
+      ]
     }
   }
 }

@@ -2,18 +2,22 @@
   "name": "enterprise-dashboard",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "prefix": "app",
   "sourceRoot": "apps/enterprise-dashboard/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/enterprise-dashboard",
         "browser": "apps/enterprise-dashboard/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/enterprise-dashboard/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -22,7 +26,9 @@
             "input": "apps/enterprise-dashboard/public"
           }
         ],
-        "styles": ["apps/enterprise-dashboard/src/styles.scss"]
+        "styles": [
+          "apps/enterprise-dashboard/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -75,7 +81,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/enterprise-dashboard/jest.config.ts",
         "tsConfig": "apps/enterprise-dashboard/tsconfig.spec.json"
@@ -94,7 +102,9 @@
     "version": {
       "executor": "nx-project-release:version",
       "options": {
-        "versionFiles": ["project.json"],
+        "versionFiles": [
+          "project.json"
+        ],
         "tagNaming": {
           "format": "v{version}",
           "prefix": "v",
@@ -108,7 +118,9 @@
     },
     "publish": {
       "executor": "nx-project-release:publish",
-      "dependsOn": ["build"]
+      "dependsOn": [
+        "build"
+      ]
     }
   }
 }

@@ -2,7 +2,7 @@
   "name": "customer-portal",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "prefix": "app",
   "sourceRoot": "apps/customer-portal/src",
   "tags": [],
@@ -113,7 +113,9 @@
     "artifact": {
       "executor": "nx-project-release:artifact",
       "cache": false,
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "options": {
         "sourceDir": "{workspaceRoot}/dist/apps/customer-portal",
         "outputDir": "{workspaceRoot}/dist/artifacts/",
