@@ -96,7 +96,7 @@
       "options": {
         "versionFiles": ["project.json"],
         "tagNaming": {
-          "format": "{projectName}@{version}",
+          "format": "v{version}",
           "prefix": "v",
           "includeProjectName": true
         },
