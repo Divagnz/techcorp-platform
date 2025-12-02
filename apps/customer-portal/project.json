@@ -110,6 +110,16 @@
         "bumpDependents": true
       }
     },
+    "artifact": {
+      "executor": "nx-project-release:artifact",
+      "cache": false,
+      "dependsOn": ["build"],
+      "options": {
+        "sourceDir": "{workspaceRoot}/dist/apps/customer-portal",
+        "outputDir": "{workspaceRoot}/dist/artifacts/",
+        "format": "tgz"
+      }
+    },
     "changelog": {
       "executor": "nx-project-release:changelog"
     },
