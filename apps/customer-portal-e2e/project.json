@@ -8,19 +8,5 @@
     "customer-portal"
   ],
   "targets": {
-    "version": {
-      "executor": "nx-project-release:version",
-      "options": {
-        "versionFiles": [
-          "project.json"
-        ],
-        "tagNaming": {
-          "format": "{projectName}@{version}",
-          "prefix": "v",
-          "includeProjectName": true
-        },
-        "bumpDependents": true
-      }
-    }
   }
 }

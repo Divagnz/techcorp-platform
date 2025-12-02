@@ -146,18 +146,15 @@
   },
   "projectRelease": {
     "projectsRelationship": "independent",
-    "versionFiles": [
-      "package.json"
-    ],
     "changelogPreset": "angular",
     "releaseGroups": {
       "apps": {
         "registryType": "nexus",
         "versionStrategy": "independent",
         "versionFiles": [
-          "package.json"
+          "project.json"
         ],
-        "projects": []
+        "projects": ["analytics-platform", "customer-portal", "enterprise-dashboard"]
       },
       "libs": {
         "registryType": "npm",
@@ -165,10 +162,15 @@
         "versionFiles": [
           "package.json"
         ],
-        "projects": []
+        "projects": [
+          "analytics-features",
+          "customer-features",
+          "ui-shared"
+        ]
       }
     },
     "excludedProjects": [
+      "analytics-platform-e2e",
       "customer-portal-e2e",
       "enterprise-dashboard-e2e"
     ]
