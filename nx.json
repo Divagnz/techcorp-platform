@@ -142,7 +142,10 @@
         "versionFiles": [
           "project.json"
         ],
-        "projects": ["analytics-platform", "customer-portal", "enterprise-dashboard"]
+        "projects": ["analytics-platform", "customer-portal", "enterprise-dashboard"],
+        "tagNaming": {
+          "format": "{projectName}@{version}"
+        }
       },
       "libs": {
         "registryType": "npm",
@@ -154,7 +157,10 @@
           "analytics-features",
           "customer-features",
           "ui-shared"
-        ]
+        ],
+        "tagNaming": {
+          "format": "{projectName}@{version}"
+        }
       }
     },
     "excludedProjects": [
