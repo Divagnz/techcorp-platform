@@ -2,7 +2,7 @@
   "name": "enterprise-dashboard",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "prefix": "app",
   "sourceRoot": "apps/enterprise-dashboard/src",
   "tags": [],

@@ -1,3 +1,15 @@
+## [0.0.0](0.0.0) (2025-12-03)
+
+### Features
+
+* **enterprise-features:** add tier level utility (#7) (af1fde9)
+
+### Chores
+
+*  update release workflows (#6) (7f92e72)
+
+
+
 ## [0.0.0](0.0.0) (2025-12-02)
 
 ### Features
