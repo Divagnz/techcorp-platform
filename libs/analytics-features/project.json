@@ -8,7 +8,9 @@
   "targets": {
     "build": {
       "executor": "@angular/build:ng-packagr",
-      "outputs": ["{workspaceRoot}/dist/libs/analytics-features"],
+      "outputs": [
+        "{workspaceRoot}/dist/libs/analytics-features"
+      ],
       "options": {
         "project": "libs/analytics-features/ng-package.json"
       },
@@ -21,12 +23,16 @@
         }
       },
       "defaultConfiguration": "production",
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build"
+      ]
     },
     "artifact": {
       "executor": "nx-project-release:artifact",
       "cache": false,
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "options": {
         "sourceDir": "{workspaceRoot}/dist/apps/customer-portal",
         "outputDir": "{workspaceRoot}/dist/artifact/",
@@ -35,7 +41,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "libs/analytics-features/jest.config.ts",
         "tsConfig": "libs/analytics-features/tsconfig.spec.json"
@@ -47,7 +55,14 @@
     "version": {
       "executor": "nx-project-release:version",
       "options": {
-        "versionFiles": ["package.json"]
+        "versionFiles": [
+          "package.json"
+        ],
+        "tagNaming": {
+          "format": "{projectName}@{version}",
+          "includeProjectName": true
+        },
+        "bumpDependents": true
       }
     },
     "changelog": {
@@ -61,7 +76,10 @@
         "access": "public",
         "distTag": "latest"
       },
-      "dependsOn": ["build", "artifact"]
+      "dependsOn": [
+        "build",
+        "artifact"
+      ]
     },
     "release": {
       "executor": "nx-project-release:release",

@@ -42,7 +42,12 @@
       "options": {
         "versionFiles": [
           "package.json"
-        ]
+        ],
+        "tagNaming": {
+          "format": "{projectName}@{version}",
+          "includeProjectName": true
+        },
+        "bumpDependents": true
       }
     },
     "changelog": {
@@ -52,7 +57,7 @@
       "executor": "nx-project-release:publish",
       "options": {
         "registryType": "npm",
-        "registry": "}",
+        "registry": "",
         "access": "public",
         "distTag": "latest"
       },

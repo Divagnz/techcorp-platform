@@ -10,4 +10,9 @@ export class EnterpriseUtils {
   static formatEnterpriseDate(date: Date): string {
     return date.toISOString().split('T')[0];
   }
+
+  static getTierLevel(tier: string): number {
+    const tiers = { basic: 1, standard: 2, premium: 3, enterprise: 4 };
+    return tiers[tier.toLowerCase() as keyof typeof tiers] || 0;
+  }
 }
