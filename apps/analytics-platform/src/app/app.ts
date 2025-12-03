@@ -19,4 +19,24 @@ export class App {
       timestamp: new Date().toISOString()
     };
   }
+
+  /**
+   * Export analytics data in multiple formats
+   * @param format - The desired export format (json, csv, xml)
+   * @returns Formatted analytics data
+   */
+  exportAnalyticsData(format: 'json' | 'csv' | 'xml' = 'json') {
+    const data = this.getAnalyticsDashboard();
+
+    switch (format) {
+      case 'json':
+        return JSON.stringify(data, null, 2);
+      case 'csv':
+        return `Title,Version,Features,Timestamp\n${data.title},${data.version},"${data.features.join(';')}",${data.timestamp}`;
+      case 'xml':
+        return `<analytics><title>${data.title}</title><version>${data.version}</version><timestamp>${data.timestamp}</timestamp></analytics>`;
+      default:
+        return JSON.stringify(data);
+    }
+  }
 }
