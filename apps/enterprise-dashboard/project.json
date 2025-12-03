@@ -55,7 +55,19 @@
       "defaultConfiguration": "production"
     },
     "artifact": {
-      "executor": "nx-project-release:artifact"
+      "executor": "nx-project-release:artifact",
+      "dependsOn": [
+        "build"
+      ],
+      "options": {
+        "sourceDir": "dist/apps/enterprise-dashboard",
+        "outputDir": "dist/artifacts",
+        "format": "tgz",
+        "artifactName": "{projectName}-{version}.tgz"
+      },
+      "outputs": [
+        "{workspaceRoot}/dist/artifacts"
+      ]
     },
     "serve": {
       "continuous": true,
@@ -103,14 +115,8 @@
       "executor": "nx-project-release:version",
       "options": {
         "versionFiles": [
-          "project.json"
-        ],
-        "tagNaming": {
-          "format": "v{version}",
-          "prefix": "v",
-          "includeProjectName": true
-        },
-        "bumpDependents": true
+          "package.json"
+        ]
       }
     },
     "changelog": {
@@ -118,9 +124,21 @@
     },
     "publish": {
       "executor": "nx-project-release:publish",
+      "options": {
+        "registryType": "nexus",
+        "registry": "https://nexus.company.com/repository/releases"
+      },
       "dependsOn": [
-        "build"
+        "build",
+        "artifact"
       ]
+    },
+    "release": {
+      "executor": "nx-project-release:release",
+      "options": {
+        "gitPush": false,
+        "createGitHubRelease": false
+      }
     }
   }
 }

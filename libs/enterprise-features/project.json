@@ -45,7 +45,12 @@
       "options": {
         "versionFiles": [
           "package.json"
-        ]
+        ],
+        "tagNaming": {
+          "format": "{projectName}@{version}",
+          "includeProjectName": true
+        },
+        "bumpDependents": true
       }
     },
     "changelog": {

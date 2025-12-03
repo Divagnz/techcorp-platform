@@ -104,18 +104,6 @@
         "gitPush": false,
         "createGitHubRelease": false
       }
-    },
-    "nx-project-release:publish": {
-      "cache": false,
-      "dependsOn": [
-        "build"
-      ],
-      "options": {
-        "registryType": "npm",
-        "registry": "https://registry.npmjs.org",
-        "access": "public",
-        "distTag": "latest"
-      }
     }
   },
   "plugins": [
