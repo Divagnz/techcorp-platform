@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 export class App {
   protected title = 'analytics-platform';
   protected version = '0.1.0';
+  protected  Identifier = 'analytics-platform-identifier';
 
   getAnalyticsDashboard() {
     return {
