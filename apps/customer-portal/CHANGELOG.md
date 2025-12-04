@@ -1,3 +1,12 @@
+## [0.0.6](0.0.6) (2025-12-04)
+
+### Chores
+
+*  update nx-project-release to 0.0.35 and fix configuration (0d5345b)
+*  update nx-project-release to 0.0.34 (8dd080c)
+
+
+
 ## [0.0.4](0.0.4) (2025-12-03)
 
 ### Chores

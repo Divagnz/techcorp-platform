@@ -1,7 +1,7 @@
 {
   "name": "analytics-platform",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "apps/analytics-platform/src",
