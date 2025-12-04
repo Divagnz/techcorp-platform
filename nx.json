@@ -67,9 +67,6 @@
     "nx-project-release:version": {
       "cache": false,
       "options": {
-        "versionFiles": [
-          "package.json"
-        ],
         "gitCommit": true,
         "gitTag": true,
         "ciOnly": true,
