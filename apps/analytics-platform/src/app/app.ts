@@ -39,4 +39,22 @@ export class App {
         return JSON.stringify(data);
     }
   }
+
+  /**
+   * Filter analytics metrics by date range
+   * @param startDate - Start date for filtering
+   * @param endDate - End date for filtering
+   * @returns Filtered metrics within the date range
+   */
+  filterMetricsByDateRange(startDate: Date, endDate: Date) {
+    const data = this.getAnalyticsDashboard();
+    return {
+      ...data,
+      dateRange: {
+        start: startDate.toISOString(),
+        end: endDate.toISOString()
+      },
+      filtered: true
+    };
+  }
 }
