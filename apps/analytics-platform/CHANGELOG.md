@@ -1,3 +1,15 @@
+## [0.2.0](0.2.0) (2025-12-04)
+
+### Features
+
+* **analytics-platform:** add date range filtering for metrics (6bc820f)
+
+### Chores
+
+*  update nx-project-release to 0.0.34 (8dd080c)
+
+
+
 ## [0.1.0](0.1.0) (2025-12-03)
 
 ### Features
